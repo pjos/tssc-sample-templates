@@ -21,7 +21,7 @@ spec:
           ui:field: RepoUrlPicker
           ui:options:
             allowedOwners:
-              - bn_user
+              - rhtap
             allowedHosts:
               - gitea.apps.microshift-01.local
 
