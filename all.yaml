@@ -7,6 +7,7 @@ spec:
   targets:
     - ./templates/devfile-sample-nodejs-dance/template.yaml  
     - ./templates/devfile-sample-code-with-quarkus-dance/template.yaml  
+    - ./templates/devfile-sample-gitea-code-with-quarkus-dance/template.yaml  
     - ./templates/devfile-sample-dotnet60-dance/template.yaml  
     - ./templates/devfile-sample-go-dance/template.yaml  
     - ./templates/devfile-sample-java-springboot-dance/template.yaml  

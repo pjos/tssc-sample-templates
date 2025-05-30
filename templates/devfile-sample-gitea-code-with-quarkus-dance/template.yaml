@@ -1,0 +1,47 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
+kind: Template
+metadata:
+  name: java-quarkus
+  title:  Quarkus Java (gitea) - Trusted Application Pipeline
+  description: Quarkus Java example with advanced continuous integration pipeline covering building, CVE scanning, security scanning, signatures,  attestations, SLSA provenance and SBOM along with Gitops-based continuous deployment
+  tags: ["java", "quarkus", "sscs", "sbom", "acs"]
+spec:
+  owner: guests
+  type: service
+
+  parameters:
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedOwners:
+              - bn_user
+            allowedHosts:
+              - gitea.apps.microshift-01.local
+
+        repoVisibility:
+          title: Visibility of the repository
+          type: string
+          default: 'public'
+          enum:
+            - 'public'
+            - 'private'
+          enumNames:
+            - 'public'
+            - 'private'
+
+  steps:
+    - id: publish
+      name: Publishing to a gitea git repository
+      action: publish:gitea
+      input:
+        description: This is ${{ parameters.repoUrl | parseRepoUrl | pick('repo') }}
+        repoVisibility: ${{ parameters.repoVisibility }}
+        repoUrl: ${{ parameters.repoUrl }}
+        defaultBranch: main
