@@ -47,7 +47,7 @@ spec:
             - GitHub
             - GitLab
             - Bitbucket
-          default: GitHub
+          default: GitLab
         repoName:
           title: Repository Name
           type: string
@@ -128,7 +128,7 @@ spec:
                 glHost:
                   title: Repository Server
                   type: string
-                  default: gitlab.com
+                  default: gitlab.apps.ocp-02.local
                   ui:help: "You can also provide the on-prem gitlab server, example: gitlab-gitlab.apps.cluster-ljg9z.sandbox219.opentlc.com"
                 ciType:
                   title: CI Provider
@@ -212,7 +212,7 @@ spec:
           title: Image Registry
           type: string
           description: The image registry host
-          default: quay.io
+          default: rhtap-quay-quay-rhtap-quay.apps.ocp-02.local
           ui:autofocus: true
           ui:help: "You can also provide the on-prem registry host, example: quay-tv2pb.apps.cluster-tv2pb.sandbox1194.opentlc.com"
         imageOrg:
@@ -228,7 +228,7 @@ spec:
         namespace:
           title: Deployment Namespace
           type: string
-          default: tssc-app
+          default: rhtap-app
           ui:options:
             rows: 5
           ui:help: "This will be the prefix of the following three namespaces for deployment: <namespace>-development, <namespace>-stage, <namespace>-prod"

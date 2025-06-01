@@ -11,6 +11,29 @@ spec:
   type: service
 
   parameters:
+    - title: Application Information
+      required:
+        - name
+        - owner
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+          ui:field: EntityNamePicker
+          maxLength: 63
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the component
+          default: user:guest
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: [Group, User]
     - title: Choose a location
       required:
         - repoUrl
@@ -24,7 +47,6 @@ spec:
               - rhtap
             allowedHosts:
               - gitea.apps.microshift-01.local
-
         repoVisibility:
           title: Visibility of the repository
           type: string
@@ -35,6 +57,36 @@ spec:
           enumNames:
             - 'public'
             - 'private'
+    - title: Deployment information
+      required:
+        - imageRegistry
+        - imageOrg
+        - imageName
+        - namespace
+      properties:
+        imageRegistry:
+          title: Image Registry
+          type: string
+          description: The image registry host
+          default: rhtap-quay-quay-rhtap-quay.apps.ocp-02.local
+          ui:autofocus: true
+          ui:help: "You can also provide the on-prem registry host, example: quay-tv2pb.apps.cluster-tv2pb.sandbox1194.opentlc.com"
+        imageOrg:
+          title: Image Organization
+          type: string
+          description: The organization, user or project that this repo will belong to
+        imageName:
+          title: Image Name
+          type: string
+          ui:options:
+            rows: 5
+        namespace:
+          title: Deployment Namespace
+          type: string
+          default: tssc-app
+          ui:options:
+            rows: 5
+          ui:help: "This will be the prefix of the following three namespaces for deployment: <namespace>-development, <namespace>-stage, <namespace>-prod"
 
   steps:
     - id: publish
